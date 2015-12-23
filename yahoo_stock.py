@@ -44,7 +44,6 @@ def update_stock_data(stockid, folder, startdate=None):
         print('Nothing to update. %s last date is %s.' % (stockid, last_date))
         return
 
-    print('updatting %s to from %s to %s' % (stockid, startdate.date(), today.date()))
     query = [
         ('a', startdate.month - 1),
         ('b', startdate.day),
@@ -55,6 +54,7 @@ def update_stock_data(stockid, folder, startdate=None):
         ('s', stockid),
     ]
     url = 'http://table.finance.yahoo.com/table.csv?%s' % urllib.urlencode(query)
+    print('updatting %s [%s - %s] form %s' % (stockid, startdate.date(), today.date(), url))
     temp_file = fname + '.tmp'
     try:
         urllib.urlretrieve(url, temp_file)
