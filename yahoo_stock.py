@@ -60,7 +60,6 @@ def update_stock_data(stockid, folder, startdate=None):
         urllib.urlretrieve(url, temp_file)
         update_data = pd.read_csv(temp_file, index_col='Date', parse_dates=True)
     except Exception, e:
-        print('ERROR: error to parse %s' % stockid)
         print(e)
         return
 
