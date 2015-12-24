@@ -25,6 +25,9 @@ def update_stock_data(stockid, folder, startdate=None):
     :param: startdate: download data from start date
     """
 
+    if not os.path.isdir(folder):
+        os.mkdir(folder)
+
     fname = os.path.join(folder, '%s.csv' % stockid.split('.')[0])
     if startdate is None and not os.path.exists(fname):
         retrive_stock_data(stockid, folder)
