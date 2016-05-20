@@ -38,6 +38,14 @@ Date Open High Low Close Volume Adj Close 分别是：日期、开盘价、最�
 
 振幅分析实现在 [stock_analysis.py](https://github.com/kamidox/stock-analysis/blob/master/stock_analysis.py) 里。函数 `amplitude()` 默认分析最近 30 天，所有在 `yahoo-data` 目录下的股票数据的振幅排名。
 
+再比如总收益率和年化收益率，这个指标也基本能反馈一个股票的投资收益水平。我们可以看最理想的情况下的收益率，比如这个股票的历史最高价和历史最低价的比值，经历多长时间，平均每年收益多少。
+
+还可以看这个股票发行第一天的收盘价和当前价的比值，这个反应的是一个自然的增长情况。
+
+另外，还可以按年或按月看一个股票的收益率。
+
+这些统计模型都在 [yahoo-stock.ipynb](https://github.com/kamidox/stock-analysis/blob/master/yahoo-stock.ipynb) 里有演示。
+
 ### 其他
 
 [yahoo-stock.ipynb](https://github.com/kamidox/stock-analysis/blob/master/yahoo-stock.ipynb) 是关键函数演示场所。
