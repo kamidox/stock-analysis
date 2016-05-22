@@ -6,19 +6,37 @@
 
 雅虎财经网站提供股票日历史数据下载接口。
 
-直接在浏览器地址中数据网址即可 http://table.finance.yahoo.com/table.csv?s=股票代码。上证股票是股票代码后面加上.ss，深证股票是股票代码后面加上.sz。例如查询中国石油的历史数据，直接在浏览器中输入：http://table.finance.yahoo.com/table.csv?s=601857.ss
+有股票代码作为参数，直接通过 http 请求来获取股票日交易数据。例如查询中国石油的历史数据，直接在浏览器中输入：
 
-深市数据链接：http://table.finance.yahoo.com/table.csv?s=000001.sz 上市数据链接：http://table.finance.yahoo.com/table.csv?s=600000.ss
+http://table.finance.yahoo.com/table.csv?s=601857.ss
+
+深市数据以 `sz` 结尾：http://table.finance.yahoo.com/table.csv?s=000001.sz
+上市数据以 `ss` 结尾：http://table.finance.yahoo.com/table.csv?s=600000.ss
 
 另外，上证综指代码：000001.ss，深证成指代码：399001.SZ，沪深300代码：000300.ss
 
-字段格式
+### 字段格式
+
+获取的数据样例如下：
+
+```
+Date,Open,High,Low,Close,Volume,Adj Close
+2015-12-23,16.91,18.65,16.88,18.65,15653900,18.65
+2015-12-22,16.86,17.13,16.48,16.95,13519900,16.95
+2015-12-21,16.31,17.0,16.2,16.85,14132200,16.85
+2015-12-18,16.59,16.7,16.21,16.31,10524300,16.31
+2015-12-17,16.28,16.75,16.16,16.6,12326500,16.6
+2015-12-16,16.23,16.42,16.05,16.28,8026000,16.28
+2015-12-15,16.06,16.31,15.95,16.18,6647500,16.18
+```
 
 Date Open High Low Close Volume Adj Close 分别是：日期、开盘价、最高价、最低价、收盘价、成交量、复权收盘价
 
-获取指定时间范围的数据
+### 获取指定时间范围的数据
 
-【例子】 取 2012年1月1日 至 2012年4月19日的数据 http://table.finance.yahoo.com/table.csv?a=0&b=1&c=2012&d=3&e=19&f=2012&s=600000.ss
+通过指定开始时间和结束时间可以获取指定时间范围的交易数据。例如，获取取 2012年1月1日 至 2012年4月19日 的数据：
+
+http://table.finance.yahoo.com/table.csv?a=0&b=1&c=2012&d=3&e=19&f=2012&s=600000.ss
 
 ## 功能说明
 
@@ -34,9 +52,9 @@ Date Open High Low Close Volume Adj Close 分别是：日期、开盘价、最�
 
 ### 数据分析
 
-数据分析开发很多模型来分析，这里使用股票的振幅来进行简单分析。一般来讲，振幅大的股票意味着风险比较高，但收益也比较高。风险与收益一定是动态平衡正相关。
+数据分析开发很多模型来分析，这里使用股票的振幅来进行简单分析。
 
-振幅分析实现在 [stock_analysis.py](https://github.com/kamidox/stock-analysis/blob/master/stock_analysis.py) 里。函数 `amplitude()` 默认分析最近 30 天，所有在 `yahoo-data` 目录下的股票数据的振幅排名。
+一般来讲，振幅大的股票意味着风险比较高，但收益也比较高。风险与收益一定是动态平衡正相关。振幅分析实现在 [stock_analysis.py](https://github.com/kamidox/stock-analysis/blob/master/stock_analysis.py) 里。函数 `amplitude()` 默认分析最近 30 天，所有在 `yahoo-data` 目录下的股票数据的振幅排名。
 
 再比如总收益率和年化收益率，这个指标也基本能反馈一个股票的投资收益水平。我们可以看最理想的情况下的收益率，比如这个股票的历史最高价和历史最低价的比值，经历多长时间，平均每年收益多少。
 
@@ -45,7 +63,3 @@ Date Open High Low Close Volume Adj Close 分别是：日期、开盘价、最�
 另外，还可以按年或按月看一个股票的收益率。
 
 这些统计模型都在 [yahoo-stock.ipynb](https://github.com/kamidox/stock-analysis/blob/master/yahoo-stock.ipynb) 里有演示。
-
-### 其他
-
-[yahoo-stock.ipynb](https://github.com/kamidox/stock-analysis/blob/master/yahoo-stock.ipynb) 是关键函数演示场所。
