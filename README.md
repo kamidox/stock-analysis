@@ -6,11 +6,12 @@
 
 雅虎财经网站提供股票日历史数据下载接口。
 
-有股票代码作为参数，直接通过 http 请求来获取股票日交易数据。例如查询中国石油的历史数据，直接在浏览器中输入：
+用股票代码作为参数，直接通过 http 请求来获取股票日交易数据。例如查询中国石油的历史数据，直接在浏览器中输入：
 
 http://table.finance.yahoo.com/table.csv?s=601857.ss
 
 深市数据以 `sz` 结尾：http://table.finance.yahoo.com/table.csv?s=000001.sz
+
 上市数据以 `ss` 结尾：http://table.finance.yahoo.com/table.csv?s=600000.ss
 
 另外，上证综指代码：000001.ss，深证成指代码：399001.SZ，沪深300代码：000300.ss
