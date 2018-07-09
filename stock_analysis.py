@@ -4,7 +4,17 @@ import pandas as pd
 import datetime
 
 
-def amplitude(datadir='yahoo-data', interval=30, end_date=None):
+class StockData(object):
+
+    def __init__(self, fname) -> None:
+        self._inited = False
+        self.fname = fname
+        self.stock_id = fname.split('.')[0]
+
+
+
+
+def amplitude(datadir='stock-data', interval=30, end_date=None):
     """
     Calculate the amplitude for all stock in data dir. Return a sorted pandas.DataFrame.
 
@@ -15,21 +25,21 @@ def amplitude(datadir='yahoo-data', interval=30, end_date=None):
     """
 
     if not os.path.isdir(datadir) or not os.path.exists(datadir):
-        print('error: idirectory not exist. %s' % datadir)
+        print('error: directory not exist. %s' % datadir)
         return
 
     if end_date is None:
         end_date = pd.Timestamp(datetime.datetime.now())
 
     def _ripple(fname, start, end):
-        data = pd.read_csv(os.path.join(datadir, fname), index_col='Date', parse_dates=True)
+        data = pd.read_csv(os.path.join(datadir, fname), index_col='日期', parse_dates=True)
         # data in file is sorted in **Descend**
         data = data.loc[end:start]
 
         def _ripple_radio(d):
-            return d.High.max() / d.Low.min()
+            return d['最高价'].max() / d['最低价'].min()
 
-        if data.Low.idxmin() < data.High.idxmax():
+        if data['最低价'].idxmin() < data['最高价'].idxmax():
             ripple_radio = _ripple_radio(data)
         else:
             ripple_radio = - _ripple_radio(data)
