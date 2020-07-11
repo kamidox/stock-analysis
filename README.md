@@ -68,6 +68,22 @@
 
 股票列表数据来自[东方财富网](http://quote.eastmoney.com/stocklist.html)，没有实时更新。目前数据是 2015年12月份获取出来的数据。SZ.txt 是深市股票列表，SH.txt 是沪市的全部股票列表。
 
+### ETF 基金列表
+
+```shell
+curl 'http://91.push2.eastmoney.com/api/qt/clist/get?pn=1&pz=1000&fs=b:MK0021,b:MK0022,b:MK0023,b:MK0024&fields=f12,f14'
+```
+
+### 沪深 A 股列表
+
+```shell
+curl 'http://91.push2.eastmoney.com/api/qt/clist/get?pn=1&pz=10000&fs=m:0+t:6,m:0+t:13,m:0+t:80,m:1+t:2,m:1+t:23&fields=f12,f14'
+```
+
+### 开放式基金列表
+
+TODO: None
+
 ## 基金数据来源
 
 使用 sina 的接口来获取数据。
